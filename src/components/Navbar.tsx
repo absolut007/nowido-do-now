@@ -2,12 +2,11 @@ import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/contexts/CartContext";
 
-interface NavbarProps {
-  cartItemsCount?: number;
-}
-
-const Navbar = ({ cartItemsCount = 0 }: NavbarProps) => {
+const Navbar = () => {
+  const { getItemCount } = useCart();
+  const cartItemsCount = getItemCount();
   return (
     <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4">

@@ -9,10 +9,12 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { products } from "@/data/products";
 import { useToast } from "@/hooks/use-toast";
+import { useCart } from "@/contexts/CartContext";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const { toast } = useToast();
+  const { addItem } = useCart();
   const product = products.find(p => p.id === id);
 
   if (!product) {
@@ -32,6 +34,7 @@ const ProductDetail = () => {
   }
 
   const handleAddToCart = () => {
+    addItem(product);
     toast({
       title: "Added to cart!",
       description: `${product.name} has been added to your cart.`,

@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
-import { Trash2, ShoppingBag } from "lucide-react";
+import { Trash2, ShoppingBag, Plus, Minus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useCart } from "@/contexts/CartContext";
 
 const Cart = () => {
-  // This would be connected to actual cart state management
-  const cartItems: any[] = [];
-  const subtotal = 0;
+  const { items: cartItems, removeItem, updateQuantity, getTotalPrice } = useCart();
+  const subtotal = getTotalPrice();
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar cartItemsCount={cartItems.length} />
+      <Navbar />
       
       <main className="flex-1">
         <div className="container mx-auto px-4 py-8">
@@ -45,8 +45,35 @@ const Cart = () => {
                           <CardTitle className="text-xl">{item.name}</CardTitle>
                           <CardDescription>{item.category}</CardDescription>
                           <p className="mt-2 text-lg font-semibold">${item.price}</p>
+                          <div className="mt-2 flex items-center gap-2">
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className="h-8 w-8"
+                              onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                            >
+                              <Minus className="h-3 w-3" />
+                            </Button>
+                            <span className="w-12 text-center font-medium">{item.quantity}</span>
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className="h-8 w-8"
+                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                            >
+                              <Plus className="h-3 w-3" />
+                            </Button>
+                            <span className="ml-4 text-sm text-muted-foreground">
+                              Subtotal: ${(item.price * item.quantity).toFixed(2)}
+                            </span>
+                          </div>
                         </div>
-                        <Button variant="ghost" size="icon">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => removeItem(item.id)}
+                          aria-label={`Remove ${item.name} from cart`}
+                        >
                           <Trash2 className="h-4 w-4" />
                         </Button>
                       </div>
@@ -64,12 +91,12 @@ const Cart = () => {
                   <CardContent className="space-y-4">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Subtotal</span>
-                      <span className="font-semibold">${subtotal}</span>
+                      <span className="font-semibold">${subtotal.toFixed(2)}</span>
                     </div>
                     <Separator />
                     <div className="flex justify-between text-lg font-bold">
                       <span>Total</span>
-                      <span>${subtotal}</span>
+                      <span>${subtotal.toFixed(2)}</span>
                     </div>
                   </CardContent>
                   <CardFooter className="flex-col gap-2">
