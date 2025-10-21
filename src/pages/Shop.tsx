@@ -16,8 +16,8 @@ const Shop = () => {
   const [sortBy, setSortBy] = useState("featured");
 
   const filteredAndSortedProducts = useMemo(() => {
-    let filtered = selectedCategory === "all" 
-      ? products 
+    const filtered = selectedCategory === "all"
+      ? products
       : products.filter(p => p.category === selectedCategory);
 
     const sorted = [...filtered].sort((a, b) => {
