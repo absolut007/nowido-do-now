@@ -68,42 +68,42 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 220 20% 8%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 70%;
 
-    --card: 220 15% 12%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 70%;
 
-    --popover: 220 15% 12%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 70%;
 
-    --primary: 80 90% 65%;
-    --primary-foreground: 220 20% 10%;
-    --primary-hover: 80 90% 70%;
+    --primary: 72 100% 51%;
+    --primary-foreground: 0 0% 0%;
+    --primary-hover: 72 100% 56%;
 
-    --secondary: 220 12% 18%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 70%;
 
-    --muted: 220 12% 18%;
-    --muted-foreground: 220 5% 70%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
 
     --accent: 350 70% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 70% 55%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 10% 22%;
-    --input: 220 10% 22%;
-    --ring: 80 90% 65%;
-    --sidebar-background: 220 18% 10%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 80 90% 65%;
-    --sidebar-primary-foreground: 220 20% 10%;
-    --sidebar-accent: 220 12% 16%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 220 10% 20%;
-    --sidebar-ring: 80 90% 65%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 72 100% 51%;
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 70%;
+    --sidebar-primary: 72 100% 51%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 70%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 72 100% 51%;
   }
 }
 
@@ -118,5 +118,9 @@ All colors MUST be HSL.
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold tracking-tight;
+  }
+
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    @apply text-white;
   }
 }
